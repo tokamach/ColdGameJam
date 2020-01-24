@@ -4,54 +4,82 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject childPrefab;
+    public GameObject childPrefab; // Prefab to create new instances of on split
+    public float maxSpeed = 25;    // Ceiling for movement speed
+    public float moveSpeed = 10;   // Speed multiplier per frame
 
-    public float maxSpeed = 25;
-    public float moveSpeed = 10;
+    private Rigidbody2D rb;     // Reference to GameObjects rigidbody component
+    private int splitCount = 1; // Count times the virus has split
 
-    private Rigidbody2D rb;
-
-    private int splitCount = 1;
-
+    /* A dictionary mapping input keys to movements */
     private Dictionary<KeyCode, Vector2> moveMap = new Dictionary<KeyCode, Vector2>{
 	{KeyCode.W, new Vector2( 0,  1)},
 	{KeyCode.A, new Vector2(-1,  0)},
 	{KeyCode.S, new Vector2( 0, -1)},
 	{KeyCode.D, new Vector2( 1,  0)}};
-    private Dictionary<KeyCode, bool> pressMap = new Dictionary<KeyCode, bool>{
-	{KeyCode.W, false},
-	{KeyCode.A, false},
-	{KeyCode.S, false},
-	{KeyCode.D, false}};
-    
+
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
     }
 
-    private void CreateChild()
+    private void CreateChild(int n)
     {
 	// Instantiate new virus prefab as child
-	GameObject newChild = Instantiate(childPrefab, this.transform);
+	//create n new children
+	for(int i = 0; i < Mathf.Pow(2, n); i++)
+	{
+	    GameObject newChild = Instantiate(childPrefab, this.transform);
+	}
+
 	Vector3 newScale = this.transform.localScale * Mathf.Pow(0.75f, splitCount);
 
 	foreach(Transform child in transform)
+	{
 	    child.transform.localScale = newScale;
-
-	//newChild.GetComponent<Collider2D>().
-	newChild.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f)));
-
+	    child.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f)));
+	}
+	    
 	splitCount++;
 	// TODO: reduce health on split
+    }
+
+    /*
+     * Remove half of children, double current scale size
+     */
+    private void MergeChild()
+    {
+	// Can't split if there's only one of us
+	if(splitCount == 1)
+	    return;
+
+	// Pick n children and kill them
+	int killed = 0;
+	foreach(Transform child in transform)
+	{
+	    if(killed >= Mathf.Pow(2, splitCount))
+		break;
+
+	    Destroy(child.gameObject);
+	    killed++;
+	}
+	
+	Vector3 newScale = this.transform.localScale * Mathf.Pow(0.75f, splitCount - 1);
+	foreach(Transform child in transform)
+	    child.localScale = newScale;
+
+	splitCount--;
     }
 
     void Update()
     {
         //Split children
 	if(Input.GetKeyDown(KeyCode.E))
-	{
-	    CreateChild();	    
-	}
+	    CreateChild(splitCount);	    
+
+	if(Input.GetKeyDown(KeyCode.Q))
+	    MergeChild();
 
 	// Use moveMap to map wasd to vec2's
 	foreach(var pair in moveMap)

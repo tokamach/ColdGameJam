@@ -341,10 +341,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: VirusChild
       objectReference: {fileID: 0}
+    - target: {fileID: 7635237134217707240, guid: 0d9e21cb52dde4c4884d71b3b1faae48,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7635237134217707241, guid: 0d9e21cb52dde4c4884d71b3b1faae48,
         type: 3}
       propertyPath: m_Mass
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635237134217707241, guid: 0d9e21cb52dde4c4884d71b3b1faae48,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7635237134217707242, guid: 0d9e21cb52dde4c4884d71b3b1faae48,
         type: 3}
