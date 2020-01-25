@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7635237134217707243}
   - component: {fileID: 7635237134217707241}
   - component: {fileID: 2617502564264887348}
+  - component: {fileID: 7949116131810302879}
+  - component: {fileID: 7012257610491755693}
   m_Layer: 0
   m_Name: VirusChild
   m_TagString: ChildVirus
@@ -89,12 +91,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17d29d6a395624b69829e78cad33817f, type: 3}
+  m_Sprite: {fileID: 4262556546210512652, guid: a090dcdf0b6c945ee935c52a7cf3c6a2,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -136,6 +139,39 @@ MonoBehaviour:
   followScale: 1.5
   maxSpeed: 15
   moveSpeed: 5
+--- !u!95 &7949116131810302879
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635237134217707237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67b0bc78c8dd24e4b977d278437f4802, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7012257610491755693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635237134217707237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90cee6151d87c4ddca9c410a3d3aaae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 100
+  bullet: {fileID: 7432398788727603795, guid: 564a741e3ae7446b6b20341ab4071227, type: 3}
 --- !u!1 &7698432642092432326
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +240,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -336167159
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a6772f83e26814c59bfc05fb264a9f0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -229,4 +265,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba1767a0475147fa8a8ccb8fe4e290a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 0.5
+  scaleFactor: 0.13

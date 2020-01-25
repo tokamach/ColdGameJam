@@ -17,8 +17,9 @@ public class EyeLook : MonoBehaviour
     void OnGUI()
     {
 	/* Set current position to parent transform (root) moved towards mouse pos */
-	Vector2 newPos   = new Vector2();
-	Vector2 mousePos = new Vector2();
+	Vector2 newPos    = new Vector2();
+	Quaternion newRot = new Quaternion();
+	Vector2 mousePos  = new Vector2();
 	mousePos.x = Event.current.mousePosition.x;
 	mousePos.y = cam.pixelHeight - Event.current.mousePosition.y;
 
@@ -27,6 +28,11 @@ public class EyeLook : MonoBehaviour
 
 	newPos = Vector2.ClampMagnitude(newPos, scaleFactor);
 
-	this.transform.localPosition = newPos;
+	//this.transform.localPosition = newPos;
+
+	newRot = Quaternion.LookRotation(newPos, Vector3.left);
+	newRot.x = 0;
+	newRot.y = 0;
+	transform.rotation = newRot;
     }
 }

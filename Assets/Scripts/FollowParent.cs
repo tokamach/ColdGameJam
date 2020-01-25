@@ -18,19 +18,11 @@ public class FollowParent : MonoBehaviour
 	rb = this.GetComponent<Rigidbody2D>();
     }
 
-    void OnDrawGizmos()
-    {
-	Gizmos.color = Color.red;
-	Gizmos.DrawSphere(rb.velocity, 0.5f);
-    }
-
     void FixedUpdate()
     {
 	Vector2 dir = (parent.transform.localPosition - this.transform.localPosition).normalized * moveSpeed;
 	this.rb.AddForce(dir);
 
 	rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
-
-        Debug.Log(rb.velocity);
     }
 }
