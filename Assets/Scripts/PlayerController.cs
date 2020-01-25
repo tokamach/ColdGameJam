@@ -58,11 +58,14 @@ public class PlayerController : MonoBehaviour
 	int killed = 0;
 	foreach(Transform child in transform)
 	{
-	    if(killed >= (Mathf.Pow(2, splitCount) / 2))
-		break;
-	    else
-		Destroy(child.gameObject);
-	    killed++;
+	    if(child.CompareTag("ChildVirus"))
+	    {
+		if(killed >= (Mathf.Pow(2, splitCount) / 2))
+		    break;
+		else
+		    Destroy(child.gameObject);
+		killed++;
+	    }
 	}
 	
 	Vector3 newScale = this.transform.localScale * Mathf.Pow(0.75f, splitCount - 1);
