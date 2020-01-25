@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EyeLook : MonoBehaviour
 {
-    public float scaleFactor = 5;
+    public float scaleFactor = 1;
     private GameObject parent;
     private Camera cam;
 
@@ -17,14 +17,16 @@ public class EyeLook : MonoBehaviour
     void OnGUI()
     {
 	/* Set current position to parent transform (root) moved towards mouse pos */
+	Vector2 newPos   = new Vector2();
 	Vector2 mousePos = new Vector2();
 	mousePos.x = Event.current.mousePosition.x;
 	mousePos.y = cam.pixelHeight - Event.current.mousePosition.y;
 
-	this.transform.localPosition = (cam.ScreenToWorldPoint(mousePos) -
+	newPos = (cam.ScreenToWorldPoint(mousePos) -
 	    parent.transform.localPosition).normalized * scaleFactor;
 
-	//if(this.transform.localPosition.magnitude > 0.5f)
-	    //this.transform.localPosition.normalized ;
+	newPos = Vector2.ClampMagnitude(newPos, scaleFactor);
+
+	this.transform.localPosition = newPos;
     }
 }
