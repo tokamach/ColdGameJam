@@ -30,12 +30,12 @@ public class PlayerController : MonoBehaviour
 	//create n new children
 	for(int i = 0; i < Mathf.Pow(2, n); i++)
 	{
-	    GameObject newChild = Instantiate(childPrefab, this.transform);
+	    GameObject newChild = Instantiate(childPrefab, this.transform.localPosition, this.transform.localRotation); //, this.transform);
 	}
 
 	Vector3 newScale = this.transform.localScale * Mathf.Pow(0.75f, splitCount);
 
-	foreach(Transform child in transform)
+	foreach(GameObject child in GameObject.FindGameObjectsWithTag("ChildVirus"))
 	{
 	    child.transform.localScale = newScale;
 	    child.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f)));
@@ -56,21 +56,19 @@ public class PlayerController : MonoBehaviour
 
 	// Pick n children and kill them
 	int killed = 0;
-	foreach(Transform child in transform)
+	foreach(GameObject child in GameObject.FindGameObjectsWithTag("ChildVirus"))
 	{
-	    if(child.CompareTag("ChildVirus"))
-	    {
 		if(killed >= (Mathf.Pow(2, splitCount) / 2))
 		    break;
 		else
-		    Destroy(child.gameObject);
+		    Destroy(child);
 		killed++;
-	    }
 	}
 	
 	Vector3 newScale = this.transform.localScale * Mathf.Pow(0.75f, splitCount - 1);
-	foreach(Transform child in transform)
-	    child.localScale = newScale;
+
+	foreach(GameObject child in GameObject.FindGameObjectsWithTag("ChildVirus"))
+	    child.transform.localScale = newScale;
 
 	splitCount--;
     }
