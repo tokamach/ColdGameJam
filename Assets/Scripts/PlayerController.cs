@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10;   // Speed multiplier per frame
 
     private Rigidbody2D rb;     // Reference to GameObjects rigidbody component
-    private int splitCount = 1; // Count times the virus has split
+    private int splitCount = 0; // Count times the virus has split
 
     /* A dictionary mapping input keys to movements */
     private Dictionary<KeyCode, Vector2> moveMap = new Dictionary<KeyCode, Vector2>{
@@ -51,17 +51,17 @@ public class PlayerController : MonoBehaviour
     private void MergeChild()
     {
 	// Can't split if there's only one of us
-	if(splitCount == 1)
+	if(splitCount == 0)
 	    return;
 
 	// Pick n children and kill them
 	int killed = 0;
 	foreach(Transform child in transform)
 	{
-	    if(killed >= Mathf.Pow(2, splitCount))
+	    if(killed >= (Mathf.Pow(2, splitCount) / 2))
 		break;
-
-	    Destroy(child.gameObject);
+	    else
+		Destroy(child.gameObject);
 	    killed++;
 	}
 	
