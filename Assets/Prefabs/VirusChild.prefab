@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7635237134217707240}
   - component: {fileID: 7635237134217707243}
   - component: {fileID: 7635237134217707241}
-  - component: {fileID: 2617502564264887348}
   - component: {fileID: 7949116131810302879}
+  - component: {fileID: 2617502564264887348}
   - component: {fileID: 7012257610491755693}
   m_Layer: 0
   m_Name: VirusChild
@@ -124,21 +124,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2617502564264887348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635237134217707237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dadb29fd17d04871a17894d8f6c18d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followScale: 1.5
-  maxSpeed: 15
-  moveSpeed: 5
 --- !u!95 &7949116131810302879
 Animator:
   serializedVersion: 3
@@ -158,6 +143,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2617502564264887348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635237134217707237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dadb29fd17d04871a17894d8f6c18d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followScale: 1
+  maxSpeed: 25
+  moveSpeed: 10
 --- !u!114 &7012257610491755693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cee6151d87c4ddca9c410a3d3aaae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 100
+  velocity: 1000
   bullet: {fileID: 7432398788727603795, guid: 564a741e3ae7446b6b20341ab4071227, type: 3}
 --- !u!1 &7698432642092432326
 GameObject:

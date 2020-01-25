@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float lifeTime = 5; // Lifetime of bullet in seconds
+    
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+	if(lifeTime <= 0)
+	{
+	    Object.Destroy(this.gameObject);
+	    return;
+	}
+	else
+	{
+	    lifeTime -= Time.deltaTime;
+	    Debug.Log(lifeTime);
+	}
     }
 }
