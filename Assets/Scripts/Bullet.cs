@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
 	else
 	{
 	    lifeTime -= Time.deltaTime;
-	    Debug.Log(lifeTime);
 	}
     }
 }

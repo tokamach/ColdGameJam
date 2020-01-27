@@ -6,8 +6,9 @@ public class Shoot : MonoBehaviour
 {
     public float velocity = 1;
     public GameObject bullet;
+
     private Camera cam;
-    
+
     void Start()
     {
 	cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -20,14 +21,18 @@ public class Shoot : MonoBehaviour
 	{
 	    Vector2 mousePos = new Vector2();
 	    mousePos.x = Input.mousePosition.x;
-	    mousePos.y = cam.pixelHeight - Input.mousePosition.y;
+	    mousePos.y = Input.mousePosition.y;
 
-	    Vector2 dir = (cam.ScreenToWorldPoint(mousePos) - this.transform.localPosition).normalized;
+	    Vector2 dir = (cam.ScreenToWorldPoint(mousePos) - this.transform.localPosition);
+	    //dir.y = -dir.y;
 
-	    dir.y = -dir.y;
+	    //dir = Vector2.ClampMagnitude(dir, velocity);
 
-	    GameObject newBullet = GameObject.Instantiate(bullet, this.transform.localPosition, this.transform.localRotation);
+	    GameObject newBullet = GameObject.Instantiate(bullet, this.transform.localPosition, Quaternion.identity);
 	    newBullet.GetComponent<Rigidbody2D>().AddForce(dir * velocity);
+
+	    Debug.DrawLine(this.transform.localPosition, dir, Color.red, 2, false);
+	    Debug.DrawLine(this.transform.localPosition, cam.ScreenToWorldPoint(mousePos), Color.yellow, 2, false);
 	}
     }
 }
