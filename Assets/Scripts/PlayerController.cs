@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     public GameObject childPrefab; // Prefab to create new instances of on split
     public float maxSpeed = 25;    // Ceiling for movement speed
     public float moveSpeed = 10;   // Speed multiplier per frame
-
+    
+    private Animator animator;  // Our own animator, so we can animate as we move
     private Rigidbody2D rb;     // Reference to GameObjects rigidbody component
     private int splitCount = 0; // Count times the virus has split
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+	animator = this.GetComponent<Animator>();
     }
 
     private void CreateChild(int n)

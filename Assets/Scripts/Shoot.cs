@@ -8,10 +8,12 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
 
     private Camera cam;
+    private Animator animator;  // Our own animator, so we can animate as we move
 
     void Start()
     {
 	cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+	animator = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -31,8 +33,14 @@ public class Shoot : MonoBehaviour
 	    GameObject newBullet = GameObject.Instantiate(bullet, this.transform.localPosition, Quaternion.identity);
 	    newBullet.GetComponent<Rigidbody2D>().AddForce(dir * velocity);
 
-	    Debug.DrawLine(this.transform.localPosition, dir, Color.red, 2, false);
-	    Debug.DrawLine(this.transform.localPosition, cam.ScreenToWorldPoint(mousePos), Color.yellow, 2, false);
+	    animator.SetBool("shooting", true);
+
+	    //Debug.DrawLine(this.transform.localPosition, dir, Color.red, 2, false);
+	    //Debug.DrawLine(this.transform.localPosition, cam.ScreenToWorldPoint(mousePos), Color.yellow, 2, false);
+	}
+	else
+	{
+	    animator.SetBool("shooting", false);
 	}
     }
 }
